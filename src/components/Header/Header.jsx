@@ -1,6 +1,5 @@
 import { useState, useRef } from "react"
 import { NavLink } from "react-router-dom"
-import logo from "../../assets/wizard_company_logo.png"
 import "./Header.css"
 
 function Header() {
@@ -61,7 +60,8 @@ function chat() {
 
 return(<><div className="header-container">
 
-<img src={logo} className="logo"></img>
+<NavLink className="logo" to="/"></NavLink>
+
 <nav className="header-nav">
     <NavLink className="header-nav__link" to="/">Home</NavLink>
     <NavLink className="header-nav__link" to="/contact">Contact</NavLink>
@@ -72,7 +72,9 @@ return(<><div className="header-container">
 
 
 {isChatOpen && (<div className="chat-window">
+    <div className="chat-greeting__container">
     <p className="chat-greeting">Hello! I am Wizzly, a digital support agent powered by the Flame of Andier - how can I help you? {":)"}</p>
+    </div>
     <div className="chat-dialogue">{chatDialogue}</div>
     <div className="chat-window__bottom">
     <input id="chat-input" className="chat-window__input" onKeyDown={(event) => { if (event.key === "Enter") { chat() }}} disabled={(isChatEnabled) ? false : true} placeholder={(isChatEnabled) ? "Enter a message..." : "Chat disabled."}></input>

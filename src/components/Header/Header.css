@@ -12,12 +12,23 @@
 }
 
 .logo {
-    flex: 1;
-    max-width: 90px;
-    height: auto;
+    background-image: url("../../assets/wizard_company_logo.png");
+    background-position: center;
+    background-size: contain;
+    width: 80px;
+    height: 80px;
+    background-repeat: no-repeat;
     border-radius: 20px;
-    padding-left: 10px;
-    margin-right: 20px;
+    margin: 0 20px;
+    transition: 0.15s ease;
+}
+
+.logo:hover {
+    box-shadow: 0 0 10px goldenrod;
+}
+
+.logo:active {
+    box-shadow: 0 0 18px rgb(255, 249, 138);
 }
 
 .header-nav {
@@ -92,8 +103,19 @@ transition: 0.15s ease;
     border-top-left-radius: 0;
 }
 
+.chat-greeting__container {
+    padding: 30px 0;
+    background-color: white;
+}
+
+.chat-section {
+    padding-bottom: 10px;
+    background-color: white;
+}
+
 
 .chat-greeting, .chat-section__response {
+    margin: 0;
     font-family:'Trebuchet MS', sans-serif;
     text-align: left;
     line-height: 28px;
@@ -112,6 +134,7 @@ transition: 0.15s ease;
 }
 
 .chat-section__request {
+    margin: 0;
     font-family:'Trebuchet MS', sans-serif;
     text-align: right;
     line-height: 28px;
