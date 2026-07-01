@@ -1,0 +1,35 @@
+.home-body-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 130px;
+}
+
+.home-hero-image {
+    margin: 30px 20px;
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid var(--gild-color);
+    animation: fadeIn 3s ease;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
+}
+
+.site-description {
+    color: var(--text-color);
+    margin: 20px 20px 30px 20px;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    max-width: 540px;
+}

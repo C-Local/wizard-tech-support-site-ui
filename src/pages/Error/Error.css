@@ -1,0 +1,19 @@
+.error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 130px;
+}
+
+h1 {
+    font-family: Cambria, serif;
+    margin: 30px 20px 10px 20px;
+}
+
+p {
+    font-family: Arial, serif;
+    margin: 20px;
+    max-width: 500px;
+    text-align: center;
+}
