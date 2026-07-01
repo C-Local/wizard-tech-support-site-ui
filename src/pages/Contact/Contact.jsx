@@ -46,28 +46,37 @@ function Contact() {
 
 return(<div className="contact-body-container">
     <h2 className="contact-section-title">Contact the Elder Masters</h2>
-    <div className="contact-messager">
-        <div className="contact-messager__name-fields">
-    <div className="contact-messager__field">
-    <label className="contact-messager__label">First Name</label>
-    <input id="first-name-input" className="contact-messager__input" type="text" placeholder="Enter your first name..." onChange={() => greetWhileContacting(event)}></input>
+    <div className="contact-messager-part-one">
+
+        <div className="contact-messager__field">
+        <label className="contact-messager__label">First Name</label>
+        <input id="first-name-input" className="contact-messager__input" type="text" placeholder="Enter your first name..." onChange={() => greetWhileContacting(event)}></input>
+        </div>
+
+        <div className="contact-messager__field">
+        <label className="contact-messager__label">Last Name</label>
+        <input id="last-name-input" className="contact-messager__input" type="text" placeholder="Enter your last name..."></input>
+        </div>
+
     </div>
-    <div className="contact-messager__field">
-    <label className="contact-messager__label">Last Name</label>
-    <input id="last-name-input" className="contact-messager__input" type="text" placeholder="Enter your last name..."></input>
+
+    {greeting}
+
+    <div className="contact-messager-part-two">
+    
+        <div className="contact-messager__field">
+        <label className="contact-messager__label">Email</label>
+        <input id="email-address-input" className="contact-messager__input" type="text" placeholder="Enter your email address..."></input>
+        </div>
+
+        <div className="contact-messager__field">
+        <label className="contact-messager__label">Phone</label>
+        <input id="phone-number-input" className="contact-messager__input" type="text" placeholder="Enter your phone number..."></input>
+        </div>
+
     </div>
-</div>
-{greeting}
-<div className="contact-messager__field extended-field">
-    <label className="contact-messager__label">Email</label>
-    <input id="email-address-input" className="contact-messager__input extended-input" type="text" placeholder="Enter your email address..."></input>
-    </div>
-<div className="contact-messager__field extended-field">
-    <label className="contact-messager__label">Phone</label>
-    <input id="phone-number-input" className="contact-messager__input extended-input" type="text" placeholder="Enter your phone number..."></input>
-    </div>
-</div>
-<button className="submit-button" onClick={submitForm}>Submit</button>
+
+    <button className="submit-button" onClick={submitForm}>Submit</button>
 </div>)
 }
 

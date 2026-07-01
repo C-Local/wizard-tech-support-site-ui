@@ -13,20 +13,14 @@
     margin: 30px 0;
 }
 
-.contact-messager {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.contact-messager__name-fields {
+.contact-messager-part-one, .contact-messager-part-two {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin: 20px;
-    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
 }
 
 .contact-messager__label {
@@ -35,6 +29,7 @@
     color: var(--text-color);
     text-transform: uppercase;
     margin: 0 5px;
+    width: 200px;
 }
 
 .contact-messager__input {
@@ -42,29 +37,27 @@
     border: 1px solid var(--border-color);
     border-radius: 6px;
     margin: 0 5px;
+    max-width: 300px;
+    width: 100%;
 }
 
 .contact-messager__input::placeholder {
     text-align: center;
 }
 
-.extended-field {
+.contact-messager__field {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    max-width: 400px;
     width:100%;
-    margin: 20px;
-}
-
-.extended-input {
-    max-width: 300px;
-    width: 100%;
+    margin: 14px;
 }
 
 .submit-button {
     padding: 12px 30px;
-    background-color: rgb(143, 126, 72);
+    background-color: rgb(63, 86, 166);
     font-size: 18px;
     font-family: Cambria, serif;
     text-transform: uppercase;
@@ -74,14 +67,12 @@
 }
 
 .submit-button:hover {
-    color: rgb(255, 247, 0);
-    background-color: rgb(106, 98, 71);
+    background-color: rgb(84, 108, 193);
     cursor: pointer;
 }
 
 .submit-button:active {
-    color:rgb(245, 89, 89);
-    background-color: rgb(87, 80, 56);
+    background-color: rgb(153, 175, 255);
 }
 
 .greeting {
@@ -89,4 +80,11 @@
     width: 100%;
     text-align: center;
     margin: 30px;
+    font-size: 18px;
+    font-family: 'Trebuchet MS', sans-serif, sans-serif;
+    background-color: rgb(244, 240, 227);
+    padding: 32px;
+    border: 1px solid rgb(135, 131, 121);
+    border-left: 4px solid rgb(44, 39, 31);
+    border-right: 4px solid rgb(44, 39, 31);
 }
