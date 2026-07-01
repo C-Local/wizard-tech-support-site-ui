@@ -48,7 +48,7 @@ function chat() {
 
     dialogueUpdate()
     toggleChatAbility(false);
-
+    document.getElementById("chat-input").value = "";
     }
 }
     
