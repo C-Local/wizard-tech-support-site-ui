@@ -22,7 +22,7 @@
 
 .header-nav {
     flex: 1;
-    max-width: 500px;
+    max-width: 550px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -144,8 +144,13 @@ transition: 0.15s ease;
     height: 32px;
 }
 
+.chat-window__input::placeholder {
+    text-align: center;
+}
+
 .chat-window__submit {
     background-color: rgb(217, 217, 217);
+    color: rgb(56, 56, 56);
     border: 1px solid var(--border-color);
     height: 32px;
     width: 38px;
@@ -159,4 +164,14 @@ transition: 0.15s ease;
 
 .chat-window__submit:active {
     background-color: rgb(194, 193, 193);
+}
+
+.chat-window__submit:disabled {
+    background-color: rgb(217, 217, 217);
+    color: rgb(179, 178, 178);
+    border: 1px solid var(--border-color);
+    height: 32px;
+    width: 38px;
+    font-size: 16px;
+    transition: background-color 0.15s ease;
 }

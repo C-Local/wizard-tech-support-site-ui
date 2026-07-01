@@ -11,6 +11,8 @@ let userMessages = useRef([]);
 
 const [chatDialogue, updateDialogue] = useState(``);
 
+const [isChatEnabled, toggleChatAbility] = useState(true);
+
 function chat() {
 
     const userInput = document.getElementById("chat-input").value;
@@ -29,16 +31,25 @@ function chat() {
         "I'm sorry, but I have to end this conversation. You have violated interaction policies. To learn more about interaction policies and steps to take after incurring violations, visit this link: https://google.com"
     ]
 
-
-    if (userMessages.current.length < 9) {
-
-    updateDialogue(userMessages.current.map((el, i) => (<div className="chat-section">
+    const dialogueUpdate = () => {
+        updateDialogue(userMessages.current.map((el, i) => (<div className="chat-section">
                 <p className="chat-section__request">{el}</p>
                 <p className="chat-section__response">{botMessages[i]}</p>
                 </div>)));
+    }
+
+
+    if (userMessages.current.length < 8) {
+
+    dialogueUpdate()
     
 
     document.getElementById("chat-input").value = "";
+    } else if (userMessages.current.length == 8) {
+
+    dialogueUpdate()
+    toggleChatAbility(false);
+
     }
 }
     
@@ -64,8 +75,8 @@ return(<><div className="header-container">
     <p className="chat-greeting">Hello! I am Wizzly, a digital support agent powered by the Flame of Andier - how can I help you? {":)"}</p>
     <div className="chat-dialogue">{chatDialogue}</div>
     <div className="chat-window__bottom">
-    <input id="chat-input" className="chat-window__input" onKeyDown={(event) => { if (event.key === "Enter") { chat() }}}></input>
-    <button className="chat-window__submit" onClick={chat}>{">"}</button>
+    <input id="chat-input" className="chat-window__input" onKeyDown={(event) => { if (event.key === "Enter") { chat() }}} disabled={(isChatEnabled) ? false : true} placeholder={(isChatEnabled) ? "Enter a message..." : "Chat disabled."}></input>
+    <button className="chat-window__submit" onClick={chat} disabled={(isChatEnabled) ? false : true}>{">"}</button>
     </div>
 
 </div>)}
