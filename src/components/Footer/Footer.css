@@ -1,0 +1,18 @@
+.footer-container {
+  margin-top: 40px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.copyright-info {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  color: var(--text-color);
+}

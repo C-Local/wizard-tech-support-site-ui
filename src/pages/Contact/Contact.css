@@ -1,0 +1,95 @@
+.contact-body-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 130px;
+}
+
+.contact-section-title {
+  font-family: Cambria, serif;
+  font-size: 24px;
+  color: var(--text-color);
+  margin: 30px 0;
+}
+
+.contact-messager-part-one,
+.contact-messager-part-two {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.contact-messager__label {
+  font-family: Cambria, serif;
+  font-size: 18px;
+  color: var(--text-color);
+  text-transform: uppercase;
+  margin: 0 5px;
+  width: 200px;
+}
+
+.contact-messager__input {
+  height: 32px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  margin: 0 5px;
+  max-width: 300px;
+  width: 100%;
+}
+
+.contact-messager__input::placeholder {
+  text-align: center;
+}
+
+.contact-messager__field {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+  margin: 14px;
+}
+
+.submit-button {
+  padding: 12px 30px;
+  background-color: rgb(63, 86, 166);
+  font-size: 18px;
+  font-family: Cambria, serif;
+  text-transform: uppercase;
+  color: white;
+  border: 1px solid var(--gild-color);
+  border-radius: 18px;
+}
+
+.submit-button:hover {
+  background-color: rgb(84, 108, 193);
+  cursor: pointer;
+}
+
+.submit-button:active {
+  background-color: rgb(153, 175, 255);
+}
+
+.form-output {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  margin: 30px;
+  font-size: 18px;
+  font-family: "Trebuchet MS", sans-serif, sans-serif;
+  background-color: rgb(244, 240, 227);
+  padding: 32px;
+  border: 1px solid rgb(135, 131, 121);
+  border-left: 4px solid rgb(44, 39, 31);
+  border-right: 4px solid rgb(44, 39, 31);
+}
+
+.form-output.submit-error {
+  color: red;
+}

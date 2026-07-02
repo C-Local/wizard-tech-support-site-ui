@@ -1,0 +1,15 @@
+*,
+::before,
+::after {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --nav-button-default-color: rgb(0, 68, 255);
+  --nav-button-hover-color: rgb(102, 131, 212);
+  --text-color: rgb(53, 53, 95);
+  --border-color: rgb(107, 107, 107);
+  --gild-color: rgb(194, 168, 24);
+  --speech-bubble-color: rgb(85, 85, 85);
+}
