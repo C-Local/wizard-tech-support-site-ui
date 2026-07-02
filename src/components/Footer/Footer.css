@@ -1,4 +1,5 @@
 .footer-container {
+<<<<<<< HEAD
   margin-top: 40px;
   border-top: 1px solid var(--border-color);
   display: flex;
@@ -16,3 +17,22 @@
   width: 100%;
   color: var(--text-color);
 }
+=======
+    margin-top: 40px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.copyright-info {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    color: var(--text-color);
+}
+>>>>>>> 1613dee4d0a2c4b4332300c9639e4bb059751dfd
