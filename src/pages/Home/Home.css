@@ -35,7 +35,7 @@
 
 .home-hero-image.flip {
   box-shadow: 0 0 30px rgb(122, 255, 244);
-  animation: flipAround 6.5s ease infinite;
+  animation: flipAround 4.5s ease infinite;
 }
 
 @keyframes flipAround {
@@ -46,7 +46,7 @@
   }
 
   40% {
-    rotate: -0.5deg;
+    rotate: -1deg;
   }
 
   49% {
@@ -62,7 +62,7 @@
   }
 
   60% {
-    rotate: 0.5deg;
+    rotate: 1deg;
   }
 
   100% {

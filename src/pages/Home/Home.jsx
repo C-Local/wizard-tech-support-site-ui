@@ -8,25 +8,15 @@ function Home() {
 
   const [spinning, setSpinning] = useState(false);
 
-  function flipHeroCard() {
-    if (!spinning) {
-      document.getElementById("hero-card").classList.add("flip");
-      setSpinning(true);
-    } else {
-      document.getElementById("hero-card").classList.remove("flip");
-      setSpinning(false);
-    }
-  }
-
   return (
     <div className="home-body-container">
       <img
         id="hero-card"
-        className="home-hero-image"
+        className={spinning ? "home-hero-image flip" : "home-hero-image"}
         src={hover || spinning ? glowHero : defHero}
         onMouseEnter={() => toggleHover(true)}
         onMouseLeave={() => toggleHover(false)}
-        onClick={flipHeroCard}
+        onClick={() => setSpinning(!spinning)}
       ></img>
       <p className="site-description">
         For thousands of years, the guardians of magic have kept the world safe

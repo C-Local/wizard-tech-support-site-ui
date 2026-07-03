@@ -31,7 +31,7 @@ function Header() {
       const dialogueUpdate = () => {
         updateDialogue(
           userMessages.current.map((el, i) => (
-            <div className="chat-section">
+            <div className="chat-section" key={i}>
               <p className="chat-section__request">{el}</p>
               <p className="chat-section__response">{botMessages[i]}</p>
             </div>
