@@ -22,7 +22,7 @@ function About() {
           onMouseLeave={() => toggleImageHover(false)}
         >
           Follow us on social media for magic tricks - we make problems
-          dissappear!
+          disappear!
         </p>
       ) : (
         ""

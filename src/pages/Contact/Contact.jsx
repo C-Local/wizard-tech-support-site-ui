@@ -3,76 +3,64 @@ import { useState } from "react";
 import "./Contact.css";
 
 function Contact() {
-  const [output, setOutput] = useState(``);
+  const [firstName, setFirstName] = useState(``);
 
-  function greetWhileContacting(e) {
-    if (e.target.value !== null && e.target.value !== "") {
-      setOutput(
-        <div className="form-output">
-          Hello, {e.target.value}! Free pro tip: don't forget to finish the form
-          with the fields below
-        </div>,
-      );
-    } else {
-      setOutput(<></>);
-    }
-  }
+  const [lastName, setLastName] = useState(``);
+
+  const [emailAddress, setEmailAddress] = useState(``);
+
+  const [phoneNumber, setPhoneNumber] = useState(``);
+
+  const [submissionStatus, setSubmissionStatus] = useState("Unsubmitted");
 
   function submitForm() {
-    const firstName = document.getElementById("first-name-input").value;
+    if (
+      firstName !== "" &&
+      lastName !== "" &&
+      emailAddress !== "" &&
+      phoneNumber !== ""
+    ) {
+      console.log({
+        firstName: firstName,
+        lastName: lastName,
+        emailAddress: emailAddress,
+        phoneNumber: phoneNumber,
+      });
 
-    if (firstName !== "" && firstName !== null) {
-      setOutput(
-        <div className="form-output">
-          Thank you for submitting, {firstName}! A copy of the submitted form
-          will appear in the console and be available for your review, if you
-          have the mystical insight on what that is.
-        </div>,
-      );
+      setFirstName("");
+      setLastName("");
+      setEmailAddress("");
+      setPhoneNumber("");
+
+      setSubmissionStatus("Successful");
     } else {
-      setOutput(
-        <div className="form-output submit-error">
-          It appears that you forgot or we lost the first name and possibly more
-          information somehow - a copy of the submitted form will appear in the
-          console and be available for your review, if you have the mystical
-          insight on what that is.
-        </div>,
-      );
+      setSubmissionStatus("Rejected");
     }
-
-    const fieldsObj = {
-      firstName: firstName ? firstName : "",
-      lastName: document.getElementById("last-name-input").value
-        ? document.getElementById("last-name-input").value
-        : "",
-      email: document.getElementById("email-address-input").value
-        ? document.getElementById("email-address-input").value
-        : "",
-      phone: document.getElementById("phone-number-input").value
-        ? document.getElementById("phone-number-input").value
-        : "",
-    };
-
-    document.getElementById("first-name-input").value = "";
-    document.getElementById("last-name-input").value = "";
-    document.getElementById("email-address-input").value = "";
-    document.getElementById("phone-number-input").value = "";
-
-    console.log(fieldsObj);
   }
 
   return (
     <div className="contact-body-container">
       <h2 className="contact-section-title">Contact the Elder Masters</h2>
-      <div className="contact-messager-part-one">
+      <div className="contact-messager">
         <div className="contact-messager__field">
           <label className="contact-messager__label">First Name</label>
           <input
             id="first-name-input"
-            className="contact-messager__input"
+            className={
+              submissionStatus === "Rejected" && firstName === ""
+                ? "contact-messager__input submit-error"
+                : "contact-messager__input"
+            }
             type="text"
             placeholder="Enter your first name..."
-            onChange={() => greetWhileContacting(event)}
+            onChange={(e) => {
+              setFirstName(e.target.value);
+
+              if (e.target.value !== "") {
+                setSubmissionStatus("Unsubmitted");
+              }
+            }}
+            value={firstName}
           ></input>
         </div>
 
@@ -80,21 +68,43 @@ function Contact() {
           <label className="contact-messager__label">Last Name</label>
           <input
             id="last-name-input"
-            className="contact-messager__input"
+            className={
+              submissionStatus === "Rejected" && lastName === ""
+                ? "contact-messager__input submit-error"
+                : "contact-messager__input"
+            }
             type="text"
             placeholder="Enter your last name..."
+            onChange={(e) => {
+              setLastName(e.target.value);
+
+              if (e.target.value !== "") {
+                setSubmissionStatus("Unsubmitted");
+              }
+            }}
+            value={lastName}
           ></input>
         </div>
-      </div>
 
-      <div className="contact-messager-part-two">
         <div className="contact-messager__field">
           <label className="contact-messager__label">Email</label>
           <input
             id="email-address-input"
-            className="contact-messager__input"
+            className={
+              submissionStatus === "Rejected" && emailAddress === ""
+                ? "contact-messager__input submit-error"
+                : "contact-messager__input"
+            }
             type="text"
             placeholder="Enter your email address..."
+            onChange={(e) => {
+              setEmailAddress(e.target.value);
+
+              if (e.target.value !== "") {
+                setSubmissionStatus("Unsubmitted");
+              }
+            }}
+            value={emailAddress}
           ></input>
         </div>
 
@@ -102,9 +112,21 @@ function Contact() {
           <label className="contact-messager__label">Phone</label>
           <input
             id="phone-number-input"
-            className="contact-messager__input"
+            className={
+              submissionStatus === "Rejected" && phoneNumber === ""
+                ? "contact-messager__input submit-error"
+                : "contact-messager__input"
+            }
             type="text"
             placeholder="Enter your phone number..."
+            onChange={(e) => {
+              setPhoneNumber(e.target.value);
+
+              if (e.target.value !== "") {
+                setSubmissionStatus("Unsubmitted");
+              }
+            }}
+            value={phoneNumber}
           ></input>
         </div>
       </div>
@@ -113,7 +135,25 @@ function Contact() {
         Submit
       </button>
 
-      {output}
+      {(firstName === "" || firstName === null) &&
+      submissionStatus === "Unsubmitted" ? (
+        ""
+      ) : submissionStatus === "Successful" ? (
+        <div className="form-output">
+          Thank you for submitting! A copy of the submitted form will appear in
+          the console and be available for your review, if you have the mystical
+          insight on what that is.
+        </div>
+      ) : submissionStatus === "Rejected" ? (
+        <div className="form-output submit-error">
+          Submit failed. One or more of the required fields are blank. Please
+          fill in the rest of the requested info and try submitting again.
+        </div>
+      ) : (
+        <div className="form-output">
+          Hello, {firstName}! Free pro tip: don't forget to finish the form.
+        </div>
+      )}
     </div>
   );
 }
