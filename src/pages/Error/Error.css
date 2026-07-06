@@ -17,3 +17,21 @@ p {
   max-width: 500px;
   text-align: center;
 }
+
+@media screen and (max-width: 550px) {
+  .error-container {
+    margin-top: 201px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .error-container {
+    margin-top: 240px;
+  }
+}
+
+@media screen and (max-width: 237px) {
+  .error-container {
+    padding-top: 352px;
+  }
+}

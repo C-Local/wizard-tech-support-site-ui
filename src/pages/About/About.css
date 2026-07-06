@@ -60,3 +60,21 @@
 .description-word-end {
   padding: 0 3px 0 0;
 }
+
+@media screen and (max-width: 550px) {
+  .about-body-container {
+    padding-top: 201px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .about-body-container {
+    padding-top: 240px;
+  }
+}
+
+@media screen and (max-width: 237px) {
+  .about-body-container {
+    padding-top: 352px;
+  }
+}

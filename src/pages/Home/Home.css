@@ -80,3 +80,21 @@
   text-align: center;
   max-width: 540px;
 }
+
+@media screen and (max-width: 550px) {
+  .home-body-container {
+    padding-top: 201px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .home-body-container {
+    padding-top: 240px;
+  }
+}
+
+@media screen and (max-width: 237px) {
+  .home-body-container {
+    padding-top: 352px;
+  }
+}
