@@ -5,8 +5,11 @@ import Contact from "../../pages/Contact/Contact.jsx";
 import Error from "../../pages/Error/Error.jsx";
 import About from "../../pages/About/About.jsx";
 import Footer from "../Footer/Footer.jsx";
+import { app, dataB, auth } from "../../lib/firebase.js"
+
 
 function App() {
+
   return (
     <>
       <BrowserRouter>
