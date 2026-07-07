@@ -67,7 +67,6 @@
     flex-direction: column;
     gap: 20px;
   }
-
 }
 
 .fake-chatbot-button {
@@ -90,7 +89,7 @@
 }
 
 .chat-window {
-  margin-top: 121px;
+  margin-top: 120px;
   margin-right: 16px;
   max-width: 480px;
   width: 100%;
@@ -118,14 +117,14 @@
 
 @media screen and (max-width: 550px) {
   .chat-window {
-    margin-top: 192px;
+    margin-top: 191px;
     margin-right: 0;
   }
 }
 
 @media screen and (max-width: 430px) {
   .chat-window {
-    margin-top: 249px;
+    margin-top: 248px;
     margin-right: 0;
   }
 }
@@ -133,7 +132,7 @@
 @media screen and (max-width: 237px) {
   .chat-window {
     border-top: 1px solid var(--border-color);
-    margin-top: 330px;
+    margin-top: 329px;
     margin-right: 0;
   }
 }
