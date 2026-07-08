@@ -1,6 +1,7 @@
-import { useState, useRef } from "react";
+import { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
+import { HiddenPageContext } from "../App/App.jsx";
 
 function Header() {
   const [isChatOpen, toggleChatWindow] = useState(false);
@@ -12,30 +13,49 @@ function Header() {
   const [isChatEnabled, toggleChatAbility] = useState(true);
 
   const botMessages = [
-      "Sorry, I don't understand - can you repeat that request?",
-      "I wasn't able to hear that - please increase the volume on your microphone and try again.",
-      "I am unable to answer that - would you like me to connect you to a human representative?",
-      "Hello! I am Wilbur, a human support agent powered by coffee and donuts - how can I help you? :)",
-      "Sorry, I apologize. I attempted to impersonate a human representative instead of connecting you to one - do you want me to connect you to a real human representative now?",
-      "Unfortunately, I am not actually able to reach out to human support - would you like me to help you draft an email to the human support team?",
-      'Ok, here is an email address format to use for the subject line, once you find the correct contact information: "supportteamname@domainaddresshere". Make sure to include as much detail pertaining to the problem as possible within the body of the message. The sign-off should be professional and precede a signature block with your contact details.',
-      "I'm sorry, but I have to end this conversation. You have violated interaction policies. To learn more about interaction policies and steps to take after incurring violations, visit this link: https://google.com",
-      ];
+    "Sorry, I don't understand - can you repeat that request?",
+    "I wasn't able to hear that - please increase the volume on your microphone and try again.",
+    "I am unable to answer that - would you like me to connect you to a human representative?",
+    "Hello! I am Wilbur, a human support agent powered by coffee and donuts - how can I help you? :)",
+    "Sorry, I apologize. I attempted to impersonate a human representative instead of connecting you to one - do you want me to connect you to a real human representative now?",
+    "Unfortunately, I am not actually able to reach out to human support - would you like me to help you draft an email to the human support team?",
+    'Ok, here is an email address format to use for the subject line, once you find the correct contact information: "supportteamname@domainaddresshere". Make sure to include as much detail pertaining to the problem as possible within the body of the message. The sign-off should be professional and precede a signature block with your contact details.',
+    "I'm sorry, but I have to end this conversation. You have violated interaction policies. To learn more about interaction policies and steps to take after incurring violations, visit this link: https://google.com",
+  ];
+
+  const { hiddenPageStatus, setHiddenPageStatus } =
+    useContext(HiddenPageContext);
+
+  function submit() {
+    if (userInput !== "" && userInput !== null) {
+      updateUserMessages((u) => [...u, userInput]);
+
+      if (userMessages.length <= 7) {
+        updateUserInput("");
+      }
+
+      if (userMessages.length === 7) {
+        toggleChatAbility(false);
+      }
+    }
+  }
 
   return (
     <>
       <div className="header-container">
-        <NavLink className="logo" to="/" onClick={() => {
-                toggleChatWindow(false);
-                updateUserMessages([]);
-                toggleChatAbility(true);
-                updateUserInput("");
-                document.getElementById("hero-card")
-                ? document.getElementById("hero-card").classList.remove("flip")
-                : "";
-            }
-
-            }></NavLink>
+        <NavLink
+          className="logo"
+          to="/"
+          onClick={() => {
+            toggleChatWindow(false);
+            updateUserMessages([]);
+            toggleChatAbility(true);
+            updateUserInput("");
+            document.getElementById("hero-card")
+              ? document.getElementById("hero-card").classList.remove("flip")
+              : "";
+          }}
+        ></NavLink>
 
         <nav className="header-nav">
           <NavLink className="header-nav__link" to="/">
@@ -46,6 +66,14 @@ function Header() {
           </NavLink>
           <NavLink className="header-nav__link" to="/about-us">
             About Us
+          </NavLink>
+          <NavLink
+            className={
+              hiddenPageStatus ? "header-nav__link hidden" : "header-nav__link"
+            }
+            to="/apply"
+          >
+            Apply
           </NavLink>
 
           <a
@@ -65,38 +93,23 @@ function Header() {
               of Andier - how can I help you? {":)"}
             </p>
           </div>
-          <div className="chat-dialogue">{userMessages.map((el, i) => (
-            <div className="chat-section" key={i}>
-              <p className="chat-section__request">{el}</p>
-              <p className="chat-section__response">{botMessages[i]}</p>
-            </div>
-          ))}</div>
+          <div className="chat-dialogue">
+            {userMessages.map((el, i) => (
+              <div className="chat-section" key={i}>
+                <p className="chat-section__request">{el}</p>
+                <p className="chat-section__response">{botMessages[i]}</p>
+              </div>
+            ))}
+          </div>
           <div className="chat-window__bottom">
             <input
               id="chat-input"
               className="chat-window__input"
               value={userInput}
-              onChange={e => updateUserInput(e.target.value)}
+              onChange={(e) => updateUserInput(e.target.value)}
               onKeyDown={(event) => {
                 if (event.key === "Enter") {
-
-                    if (event.target.value !== "" && event.target.value !== null) {
-
-                        updateUserMessages(u => [...u, event.target.value]);
-
-                        if (userMessages.length <= 7) {
-
-                            updateUserInput("");
-                            
-                        }
-                        
-                        if (userMessages.length === 7) {
-
-                            toggleChatAbility(false);
-                        }
-
-                        }
-
+                  submit();
                 }
               }}
               disabled={isChatEnabled ? false : true}
@@ -106,24 +119,7 @@ function Header() {
             ></input>
             <button
               className="chat-window__submit"
-              onClick={() => {
-                if (userInput !== "" && userInput !== null) {
-
-                        updateUserMessages(u => [...u, userInput]);
-
-                        if (userMessages.length <= 7) {
-
-                            updateUserInput("");
-                            
-                        }
-                        
-                        if (userMessages.length === 7) {
-
-                            toggleChatAbility(false);
-                        }
-
-                        }
-              }}
+              onClick={submit}
               disabled={isChatEnabled ? false : true}
             >
               {">"}

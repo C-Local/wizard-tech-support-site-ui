@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import "./Contact.css";
+import "./Apply.css";
 
-function Contact() {
+function Apply() {
   const [firstName, setFirstName] = useState(``);
 
   const [lastName, setLastName] = useState(``);
@@ -11,6 +11,8 @@ function Contact() {
 
   const [phoneNumber, setPhoneNumber] = useState(``);
 
+  const [coverLetter, setCoverLetter] = useState(``);
+
   const [submissionStatus, setSubmissionStatus] = useState("Unsubmitted");
 
   function submitForm() {
@@ -18,19 +20,22 @@ function Contact() {
       firstName !== "" &&
       lastName !== "" &&
       emailAddress !== "" &&
-      phoneNumber !== ""
+      phoneNumber !== "" &&
+      coverLetter !== ""
     ) {
       console.log({
         firstName: firstName,
         lastName: lastName,
         emailAddress: emailAddress,
         phoneNumber: phoneNumber,
+        coverLetter: coverLetter,
       });
 
       setFirstName("");
       setLastName("");
       setEmailAddress("");
       setPhoneNumber("");
+      setCoverLetter("");
 
       setSubmissionStatus("Successful");
     } else {
@@ -39,16 +44,18 @@ function Contact() {
   }
 
   return (
-    <div className="contact-body-container">
-      <h2 className="contact-section-title">Contact the Elder Masters</h2>
-      <div className="contact-messager">
-        <div className="contact-messager__field">
-          <label className="contact-messager__label">First Name</label>
+    <div className="apply-body-container">
+      <h2 className="apply-section-title">
+        You Passed the Test!<br></br>You May Now Apply to Join the Order
+      </h2>
+      <div className="apply-messager">
+        <div className="apply-messager__field">
+          <label className="apply-messager__label">First Name</label>
           <input
             className={
               submissionStatus === "Rejected" && firstName === ""
-                ? "contact-messager__input submit-error"
-                : "contact-messager__input"
+                ? "apply-messager__input submit-error"
+                : "apply-messager__input"
             }
             type="text"
             placeholder="Enter your first name..."
@@ -63,13 +70,13 @@ function Contact() {
           ></input>
         </div>
 
-        <div className="contact-messager__field">
-          <label className="contact-messager__label">Last Name</label>
+        <div className="apply-messager__field">
+          <label className="apply-messager__label">Last Name</label>
           <input
             className={
               submissionStatus === "Rejected" && lastName === ""
-                ? "contact-messager__input submit-error"
-                : "contact-messager__input"
+                ? "apply-messager__input submit-error"
+                : "apply-messager__input"
             }
             type="text"
             placeholder="Enter your last name..."
@@ -84,13 +91,13 @@ function Contact() {
           ></input>
         </div>
 
-        <div className="contact-messager__field">
-          <label className="contact-messager__label">Email</label>
+        <div className="apply-messager__field">
+          <label className="apply-messager__label">Email</label>
           <input
             className={
               submissionStatus === "Rejected" && emailAddress === ""
-                ? "contact-messager__input submit-error"
-                : "contact-messager__input"
+                ? "apply-messager__input submit-error"
+                : "apply-messager__input"
             }
             type="text"
             placeholder="Enter your email address..."
@@ -105,13 +112,13 @@ function Contact() {
           ></input>
         </div>
 
-        <div className="contact-messager__field">
-          <label className="contact-messager__label">Phone</label>
+        <div className="apply-messager__field">
+          <label className="apply-messager__label">Phone</label>
           <input
             className={
               submissionStatus === "Rejected" && phoneNumber === ""
-                ? "contact-messager__input submit-error"
-                : "contact-messager__input"
+                ? "apply-messager__input submit-error"
+                : "apply-messager__input"
             }
             type="text"
             placeholder="Enter your phone number..."
@@ -125,6 +132,26 @@ function Contact() {
             value={phoneNumber}
           ></input>
         </div>
+
+        <div className="apply-messager__field cover-letter-field">
+          <label className="apply-messager__label">Cover Letter</label>
+          <textarea
+            className={
+              submissionStatus === "Rejected" && coverLetter === ""
+                ? "apply-messager__input cover-letter-input submit-error"
+                : "apply-messager__input cover-letter-input"
+            }
+            placeholder="Enter your cover letter..."
+            onChange={(e) => {
+              setCoverLetter(e.target.value);
+
+              if (e.target.value !== "") {
+                setSubmissionStatus("Unsubmitted");
+              }
+            }}
+            value={coverLetter}
+          ></textarea>
+        </div>
       </div>
 
       <button className="submit-button" onClick={submitForm}>
@@ -136,22 +163,22 @@ function Contact() {
         ""
       ) : submissionStatus === "Successful" ? (
         <div className="form-output">
-          Thank you for submitting! A copy of the submitted form will appear in
-          the console and be available for your review, if you have the mystical
-          insight on what that is.
+          Thank you for applying! A copy of what you sent to the elders will
+          appear in the console and be available for your review.
         </div>
       ) : submissionStatus === "Rejected" ? (
         <div className="form-output submit-error">
           Submit failed. One or more of the required fields are blank. Please
-          fill in the rest of the requested info and try submitting again.
+          fill in the rest of the required info and try submitting again.
         </div>
       ) : (
         <div className="form-output">
-          Hello, {firstName}! Free pro tip: don't forget to finish the form.
+          Most high greetings, {firstName}! Free pro tip: don't forget to finish
+          the application.
         </div>
       )}
     </div>
   );
 }
 
-export default Contact;
+export default Apply;

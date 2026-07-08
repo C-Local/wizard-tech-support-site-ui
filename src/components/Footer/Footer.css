@@ -5,14 +5,30 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 2px;
+  padding: 0 20px;
 }
 
 .copyright-info {
-  margin: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 60px;
   width: 100%;
+  max-width: 290px;
   color: var(--text-color);
+}
+
+.mystery-hat {
+  width: 20px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.mystery-hat:hover {
+  cursor: not-allowed;
+}
+
+.mystery-hat:active {
+  cursor: crosshair;
 }

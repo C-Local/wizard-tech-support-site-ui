@@ -1,4 +1,4 @@
-.contact-body-container {
+.apply-body-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,7 +6,7 @@
   padding-top: 130px;
 }
 
-.contact-section-title {
+.apply-section-title {
   font-family: Cambria, serif;
   font-size: 24px;
   color: var(--text-color);
@@ -14,7 +14,7 @@
   text-align: center;
 }
 
-.contact-messager {
+.apply-messager {
   max-width: 1200px;
   width: 100%;
   display: flex;
@@ -25,7 +25,7 @@
   margin-bottom: 30px;
 }
 
-.contact-messager__label {
+.apply-messager__label {
   font-family: Cambria, serif;
   font-size: 18px;
   color: var(--text-color);
@@ -35,7 +35,7 @@
   width: 200px;
 }
 
-.contact-messager__input {
+.apply-messager__input {
   height: 32px;
   border: 1px solid var(--border-color);
   border-radius: 6px;
@@ -44,11 +44,21 @@
   width: 100%;
 }
 
-.contact-messager__input::placeholder {
+.apply-messager__input::placeholder {
   text-align: center;
 }
 
-.contact-messager__field {
+.cover-letter-input {
+  height: 164px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.cover-letter-input::placeholder {
+  text-align: center;
+}
+
+.apply-messager__field {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -56,6 +66,12 @@
   max-width: 400px;
   width: 100%;
   margin: 14px;
+}
+
+.cover-letter-field {
+  margin-top: 40px;
+  flex-direction: column;
+  gap: 28px;
 }
 
 .submit-button {
@@ -96,18 +112,19 @@
   color: red;
 }
 
-.contact-messager__input.submit-error {
+.apply-messager__input.submit-error,
+.apply-messager__input.cover-letter-input.submit-error {
   box-shadow: 0 0 5px red;
 }
 
 @media screen and (max-width: 636px) {
-  .contact-body-container {
+  .apply-body-container {
     padding-top: 161px;
   }
 }
 
 @media screen and (max-width: 550px) {
-  .contact-body-container {
+  .apply-body-container {
     padding-top: 4px;
   }
 }
