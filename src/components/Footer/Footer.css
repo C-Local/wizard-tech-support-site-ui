@@ -23,6 +23,7 @@
   width: 20px;
   height: auto;
   border-radius: 8px;
+  transition: 0.15s ease;
 }
 
 .mystery-hat:hover {
