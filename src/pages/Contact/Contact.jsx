@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import { collection, addDoc } from "firebase/firestore";
+import { dataB } from "../../lib/firebase.js";
 import "./Contact.css";
 
 function Contact() {
@@ -13,26 +14,47 @@ function Contact() {
 
   const [submissionStatus, setSubmissionStatus] = useState("Unsubmitted");
 
-  function submitForm() {
+  async function submitForm() {
     if (
       firstName !== "" &&
       lastName !== "" &&
       emailAddress !== "" &&
       phoneNumber !== ""
     ) {
-      console.log({
-        firstName: firstName,
-        lastName: lastName,
-        emailAddress: emailAddress,
-        phoneNumber: phoneNumber,
-      });
+      try {
+        setSubmissionStatus("Submitting");
 
-      setFirstName("");
-      setLastName("");
-      setEmailAddress("");
-      setPhoneNumber("");
+        await addDoc(
+          collection(
+            dataB,
+            import.meta.env.VITE_FIREBASE_CONTACT_FORM_COLLECTION,
+          ),
+          {
+            firstName: firstName,
+            lastName: lastName,
+            emailAddress: emailAddress,
+            phoneNumber: phoneNumber,
+          },
+        );
 
-      setSubmissionStatus("Successful");
+        console.log({
+          firstName: firstName,
+          lastName: lastName,
+          emailAddress: emailAddress,
+          phoneNumber: phoneNumber,
+        });
+
+        setFirstName("");
+        setLastName("");
+        setEmailAddress("");
+        setPhoneNumber("");
+
+        setSubmissionStatus("Successful");
+      } catch (error) {
+        console.error("Error: ", error);
+
+        setSubmissionStatus("Failed");
+      }
     } else {
       setSubmissionStatus("Rejected");
     }
@@ -134,16 +156,26 @@ function Contact() {
       {(firstName === "" || firstName === null) &&
       submissionStatus === "Unsubmitted" ? (
         ""
+      ) : submissionStatus === "Submitting" ? (
+        <div className="form-output">
+          Sending your message to the high masters...
+        </div>
       ) : submissionStatus === "Successful" ? (
         <div className="form-output">
-          Thank you for submitting! A copy of the submitted form will appear in
-          the console and be available for your review, if you have the mystical
-          insight on what that is.
+          Thank you for your submission! A copy of the submitted form will
+          appear in the console and be available for your review, if you have
+          the mystical insight on what that is.
         </div>
       ) : submissionStatus === "Rejected" ? (
         <div className="form-output submit-error">
           Submit failed. One or more of the required fields are blank. Please
           fill in the rest of the requested info and try submitting again.
+        </div>
+      ) : submissionStatus === "Failed" ? (
+        <div className="form-output submit-error">
+          Your submission was lost in transit. Please make sure there aren't
+          international web restrictions or network issues happening in the area
+          and try submitting again.
         </div>
       ) : (
         <div className="form-output">

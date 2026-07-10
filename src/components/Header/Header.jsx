@@ -54,6 +54,7 @@ function Header() {
             document.getElementById("hero-card")
               ? document.getElementById("hero-card").classList.remove("flip")
               : "";
+            setHiddenPageStatus(true);
           }}
         ></NavLink>
 

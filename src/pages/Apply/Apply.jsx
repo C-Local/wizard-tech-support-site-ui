@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { dataB } from "../../lib/firebase.js";
 
 import "./Apply.css";
 
@@ -15,7 +17,7 @@ function Apply() {
 
   const [submissionStatus, setSubmissionStatus] = useState("Unsubmitted");
 
-  function submitForm() {
+  async function submitForm() {
     if (
       firstName !== "" &&
       lastName !== "" &&
@@ -23,21 +25,42 @@ function Apply() {
       phoneNumber !== "" &&
       coverLetter !== ""
     ) {
-      console.log({
-        firstName: firstName,
-        lastName: lastName,
-        emailAddress: emailAddress,
-        phoneNumber: phoneNumber,
-        coverLetter: coverLetter,
-      });
+      try {
+        setSubmissionStatus("Submitting");
 
-      setFirstName("");
-      setLastName("");
-      setEmailAddress("");
-      setPhoneNumber("");
-      setCoverLetter("");
+        await addDoc(
+          collection(
+            dataB,
+            import.meta.env.VITE_FIREBASE_APPLY_FORM_COLLECTION,
+          ),
+          {
+            firstName: firstName,
+            lastName: lastName,
+            emailAddress: emailAddress,
+            phoneNumber: phoneNumber,
+            coverLetter: coverLetter,
+          },
+        );
 
-      setSubmissionStatus("Successful");
+        console.log({
+          firstName: firstName,
+          lastName: lastName,
+          emailAddress: emailAddress,
+          phoneNumber: phoneNumber,
+          coverLetter: coverLetter,
+        });
+
+        setFirstName("");
+        setLastName("");
+        setEmailAddress("");
+        setPhoneNumber("");
+        setCoverLetter("");
+
+        setSubmissionStatus("Successful");
+      } catch (error) {
+        console.error("Error: ", error);
+        setSubmissionStatus("Failed");
+      }
     } else {
       setSubmissionStatus("Rejected");
     }
@@ -161,6 +184,10 @@ function Apply() {
       {(firstName === "" || firstName === null) &&
       submissionStatus === "Unsubmitted" ? (
         ""
+      ) : submissionStatus === "Submitting" ? (
+        <div className="form-output">
+          Sending your letter to the high masters...
+        </div>
       ) : submissionStatus === "Successful" ? (
         <div className="form-output">
           Thank you for applying! A copy of what you sent to the elders will
@@ -170,6 +197,12 @@ function Apply() {
         <div className="form-output submit-error">
           Submit failed. One or more of the required fields are blank. Please
           fill in the rest of the required info and try submitting again.
+        </div>
+      ) : submissionStatus === "Failed" ? (
+        <div className="form-output submit-error">
+          Your submission was lost in transit. Please make sure there aren't
+          international web restrictions or network issues happening in the area
+          and try submitting again.
         </div>
       ) : (
         <div className="form-output">
