@@ -48,6 +48,16 @@
   text-align: center;
 }
 
+.request-input {
+  height: 164px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.request-input::placeholder {
+  text-align: center;
+}
+
 .contact-messager__field {
   display: flex;
   flex-direction: row;
@@ -56,6 +66,12 @@
   max-width: 400px;
   width: 100%;
   margin: 14px;
+}
+
+.request-field {
+  margin-top: 40px;
+  flex-direction: column;
+  gap: 18px;
 }
 
 .submit-button {
@@ -96,7 +112,8 @@
   color: red;
 }
 
-.contact-messager__input.submit-error {
+.contact-messager__input.submit-error,
+.contact-messager__input.request-input.submit-error {
   box-shadow: 0 0 5px red;
 }
 

@@ -12,6 +12,8 @@ function Contact() {
 
   const [phoneNumber, setPhoneNumber] = useState(``);
 
+  const [request, setRequest] = useState(``);
+
   const [submissionStatus, setSubmissionStatus] = useState("Unsubmitted");
 
   async function submitForm() {
@@ -19,7 +21,8 @@ function Contact() {
       firstName !== "" &&
       lastName !== "" &&
       emailAddress !== "" &&
-      phoneNumber !== ""
+      phoneNumber !== "" &&
+      request !== ""
     ) {
       try {
         setSubmissionStatus("Submitting");
@@ -34,6 +37,7 @@ function Contact() {
             lastName: lastName,
             emailAddress: emailAddress,
             phoneNumber: phoneNumber,
+            request: request,
           },
         );
 
@@ -42,12 +46,14 @@ function Contact() {
           lastName: lastName,
           emailAddress: emailAddress,
           phoneNumber: phoneNumber,
+          request: request,
         });
 
         setFirstName("");
         setLastName("");
         setEmailAddress("");
         setPhoneNumber("");
+        setRequest("");
 
         setSubmissionStatus("Successful");
       } catch (error) {
@@ -146,6 +152,26 @@ function Contact() {
             }}
             value={phoneNumber}
           ></input>
+        </div>
+
+        <div className="contact-messager__field request-field">
+          <label className="contact-messager__label">Request</label>
+          <textarea
+            className={
+              submissionStatus === "Rejected" && request === ""
+                ? "contact-messager__input request-input submit-error"
+                : "contact-messager__input request-input"
+            }
+            placeholder="Enter your request..."
+            onChange={(e) => {
+              setRequest(e.target.value);
+
+              if (e.target.value !== "") {
+                setSubmissionStatus("Unsubmitted");
+              }
+            }}
+            value={request}
+          ></textarea>
         </div>
       </div>
 
