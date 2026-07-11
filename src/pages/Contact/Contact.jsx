@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
-import { dataB } from "../../lib/firebase.js";
 import "./Contact.css";
+import Form from "../../components/Form/Form.jsx";
+import "../../components/Form/Form.css";
 
 function Contact() {
   const [firstName, setFirstName] = useState(``);
@@ -14,201 +14,61 @@ function Contact() {
 
   const [request, setRequest] = useState(``);
 
-  const [submissionStatus, setSubmissionStatus] = useState("Unsubmitted");
-
-  async function submitForm() {
-    if (
-      firstName !== "" &&
-      lastName !== "" &&
-      emailAddress !== "" &&
-      phoneNumber !== "" &&
-      request !== ""
-    ) {
-      try {
-        setSubmissionStatus("Submitting");
-
-        await addDoc(
-          collection(
-            dataB,
-            import.meta.env.VITE_FIREBASE_CONTACT_FORM_COLLECTION,
-          ),
-          {
-            firstName: firstName,
-            lastName: lastName,
-            emailAddress: emailAddress,
-            phoneNumber: phoneNumber,
-            request: request,
-          },
-        );
-
-        console.log({
-          firstName: firstName,
-          lastName: lastName,
-          emailAddress: emailAddress,
-          phoneNumber: phoneNumber,
-          request: request,
-        });
-
-        setFirstName("");
-        setLastName("");
-        setEmailAddress("");
-        setPhoneNumber("");
-        setRequest("");
-
-        setSubmissionStatus("Successful");
-      } catch (error) {
-        console.error("Error: ", error);
-
-        setSubmissionStatus("Failed");
-      }
-    } else {
-      setSubmissionStatus("Rejected");
-    }
-  }
-
   return (
-    <div className="contact-body-container">
-      <h2 className="contact-section-title">Contact the Elder Masters</h2>
-      <div className="contact-messager">
-        <div className="contact-messager__field">
-          <label className="contact-messager__label">First Name</label>
-          <input
-            className={
-              submissionStatus === "Rejected" && firstName === ""
-                ? "contact-messager__input submit-error"
-                : "contact-messager__input"
-            }
-            type="text"
-            placeholder="Enter your first name..."
-            onChange={(e) => {
-              setFirstName(e.target.value);
-
-              if (e.target.value !== "") {
-                setSubmissionStatus("Unsubmitted");
-              }
-            }}
-            value={firstName}
-          ></input>
-        </div>
-
-        <div className="contact-messager__field">
-          <label className="contact-messager__label">Last Name</label>
-          <input
-            className={
-              submissionStatus === "Rejected" && lastName === ""
-                ? "contact-messager__input submit-error"
-                : "contact-messager__input"
-            }
-            type="text"
-            placeholder="Enter your last name..."
-            onChange={(e) => {
-              setLastName(e.target.value);
-
-              if (e.target.value !== "") {
-                setSubmissionStatus("Unsubmitted");
-              }
-            }}
-            value={lastName}
-          ></input>
-        </div>
-
-        <div className="contact-messager__field">
-          <label className="contact-messager__label">Email</label>
-          <input
-            className={
-              submissionStatus === "Rejected" && emailAddress === ""
-                ? "contact-messager__input submit-error"
-                : "contact-messager__input"
-            }
-            type="text"
-            placeholder="Enter your email address..."
-            onChange={(e) => {
-              setEmailAddress(e.target.value);
-
-              if (e.target.value !== "") {
-                setSubmissionStatus("Unsubmitted");
-              }
-            }}
-            value={emailAddress}
-          ></input>
-        </div>
-
-        <div className="contact-messager__field">
-          <label className="contact-messager__label">Phone</label>
-          <input
-            className={
-              submissionStatus === "Rejected" && phoneNumber === ""
-                ? "contact-messager__input submit-error"
-                : "contact-messager__input"
-            }
-            type="text"
-            placeholder="Enter your phone number..."
-            onChange={(e) => {
-              setPhoneNumber(e.target.value);
-
-              if (e.target.value !== "") {
-                setSubmissionStatus("Unsubmitted");
-              }
-            }}
-            value={phoneNumber}
-          ></input>
-        </div>
-
-        <div className="contact-messager__field request-field">
-          <label className="contact-messager__label">Request</label>
-          <textarea
-            className={
-              submissionStatus === "Rejected" && request === ""
-                ? "contact-messager__input request-input submit-error"
-                : "contact-messager__input request-input"
-            }
-            placeholder="Enter your request..."
-            onChange={(e) => {
-              setRequest(e.target.value);
-
-              if (e.target.value !== "") {
-                setSubmissionStatus("Unsubmitted");
-              }
-            }}
-            value={request}
-          ></textarea>
-        </div>
-      </div>
-
-      <button className="submit-button" onClick={submitForm}>
-        Submit
-      </button>
-
-      {(firstName === "" || firstName === null) &&
-      submissionStatus === "Unsubmitted" ? (
-        ""
-      ) : submissionStatus === "Submitting" ? (
-        <div className="form-output">
-          Sending your message to the high masters...
-        </div>
-      ) : submissionStatus === "Successful" ? (
-        <div className="form-output">
-          Thank you for your submission! A copy of the submitted form will
-          appear in the console and be available for your review, if you have
-          the mystical insight on what that is.
-        </div>
-      ) : submissionStatus === "Rejected" ? (
-        <div className="form-output submit-error">
-          Submit failed. One or more of the required fields are blank. Please
-          fill in the rest of the requested info and try submitting again.
-        </div>
-      ) : submissionStatus === "Failed" ? (
-        <div className="form-output submit-error">
-          Your submission was lost in transit. Please make sure there aren't
-          international web restrictions or network issues happening in the area
-          and try submitting again.
-        </div>
-      ) : (
-        <div className="form-output">
-          Hello, {firstName}! Free pro tip: don't forget to finish the form.
-        </div>
-      )}
-    </div>
+    <Form
+      firstField={{
+        type: "text",
+        text: "First Name",
+        value: firstName,
+        setter: setFirstName,
+        placeholder: "Enter your first name...",
+      }}
+      secondField={{
+        type: "text",
+        text: "Last Name",
+        value: lastName,
+        setter: setLastName,
+        placeholder: "Enter your last name...",
+      }}
+      thirdField={{
+        type: "text",
+        text: "Email",
+        value: emailAddress,
+        setter: setEmailAddress,
+        placeholder: "Enter your email address...",
+      }}
+      fourthField={{
+        type: "text",
+        text: "Phone",
+        value: phoneNumber,
+        setter: setPhoneNumber,
+        placeholder: "Enter your phone number...",
+      }}
+      fifthField={{
+        type: "text area",
+        text: "Request",
+        value: request,
+        setter: setRequest,
+        placeholder: "Enter your request...",
+      }}
+      fieldsObj={{
+        firstName: firstName,
+        lastName: lastName,
+        emailAddress: emailAddress,
+        phoneNumber: phoneNumber,
+        request: request,
+      }}
+      formTitle={
+        <h2 className="form-section-title">Contact the Elder Masters</h2>
+      }
+      collection={import.meta.env.VITE_FIREBASE_CONTACT_FORM_COLLECTION}
+      outputs={{
+        submitting: "Sending your message to the high masters...",
+        submitted:
+          "Thank you for your submission! A copy of the submitted form will appear in the console and be available for your review, if you have the mystical insight on what that is.",
+        greeting: `Hello, ${firstName}! Free pro tip: don't forget to finish the form.`,
+      }}
+    ></Form>
   );
 }
 
