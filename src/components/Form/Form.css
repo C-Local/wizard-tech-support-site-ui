@@ -116,15 +116,3 @@
 .form-messager__input.request-input.submit-error {
   box-shadow: 0 0 5px red;
 }
-
-@media screen and (max-width: 636px) {
-  .form-body-container {
-    padding-top: 161px;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  .form-body-container {
-    padding-top: 4px;
-  }
-}

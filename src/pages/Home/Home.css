@@ -80,15 +80,3 @@
   text-align: center;
   max-width: 540px;
 }
-
-@media screen and (max-width: 636px) {
-  .home-body-container {
-    padding-top: 161px;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  .home-body-container {
-    padding-top: 4px;
-  }
-}

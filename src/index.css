@@ -8,6 +8,7 @@
 :root {
   --nav-button-default-color: rgb(0, 68, 255);
   --nav-button-hover-color: rgb(102, 131, 212);
+  --nav-button-active-color: rgb(210, 220, 255);
   --text-color: rgb(53, 53, 95);
   --border-color: rgb(107, 107, 107);
   --gild-color: rgb(194, 168, 24);

@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 import { HiddenPageContext } from "../App/App.jsx";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
 
 function Header() {
   const [isChatOpen, toggleChatWindow] = useState(false);
@@ -11,6 +13,8 @@ function Header() {
   const [userMessages, updateUserMessages] = useState([]);
 
   const [isChatEnabled, toggleChatAbility] = useState(true);
+
+  const [isMenuOpen, toggleMenu] = useState("initial");
 
   const botMessages = [
     "Sorry, I don't understand - can you repeat that request?",
@@ -57,15 +61,15 @@ function Header() {
             setHiddenPageStatus(true);
           }}
         ></NavLink>
-
-        <nav className="header-nav">
-          <NavLink className="header-nav__link" to="/">
+        <button className="header-nav__menu" onClick={() => {toggleMenu(isMenuOpen === "open" ? "closed" : "open"); toggleChatWindow(false); }}><i className="fa fa-bars"></i></button>
+        <nav className={isMenuOpen === "initial" ? "header-nav initial" : isMenuOpen === "open" ? "header-nav" : "hidden-nav"}>
+          <NavLink className="header-nav__link" to="/" onClick={() => toggleMenu("closed")}>
             Home
           </NavLink>
-          <NavLink className="header-nav__link" to="/contact">
+          <NavLink className="header-nav__link" to="/contact" onClick={() => toggleMenu("closed")}>
             Contact
           </NavLink>
-          <NavLink className="header-nav__link" to="/about-us">
+          <NavLink className="header-nav__link" to="/about-us" onClick={() => toggleMenu("closed")}>
             About Us
           </NavLink>
           <NavLink
@@ -73,17 +77,17 @@ function Header() {
               hiddenPageStatus ? "header-nav__link hidden" : "header-nav__link"
             }
             to="/apply"
+            onClick={() => toggleMenu("closed")}
           >
             Apply
           </NavLink>
-
-          <a
+        </nav>
+        <a
             className="fake-chatbot-button"
-            onClick={() => toggleChatWindow(!isChatOpen)}
+            onClick={() => { toggleChatWindow(!isChatOpen); toggleMenu("closed"); }}
           >
             &#129302;
           </a>
-        </nav>
       </div>
 
       {isChatOpen && (

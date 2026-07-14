@@ -7,7 +7,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 30px 20px 20px;
+  padding: 20px 30px;
   border-bottom: 1px solid var(--border-color);
   z-index: 100000;
 }
@@ -22,6 +22,7 @@
   border-radius: 20px;
   margin: 0 20px;
   transition: 0.15s ease;
+  flex-shrink: 0;
 }
 
 .logo:hover {
@@ -46,11 +47,12 @@
 }
 
 .header-nav__link {
-  color: rgb(0, 68, 255);
+  color: var(--nav-button-default-color);
   text-decoration: none;
   font-size: 23px;
   font-family: Cambria, serif;
   transition: 0.15s ease;
+  margin: 0 20px;
 }
 
 .header-nav__link:hover {
@@ -59,15 +61,7 @@
 }
 
 .header-nav__link:active {
-  color: rgb(210, 220, 255);
-}
-
-@media screen and (max-width: 550px) {
-  .header-container {
-    position: relative;
-    flex-direction: column;
-    gap: 20px;
-  }
+  color: var(--nav-button-active-color);
 }
 
 .fake-chatbot-button {
@@ -113,21 +107,6 @@
   border-top-right-radius: 0;
   border-top-left-radius: 0;
   z-index: 100000;
-}
-
-@media screen and (max-width: 636px) {
-  .chat-window {
-    margin-top: 147px;
-    margin-right: 0;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  .chat-window {
-    position: relative;
-    margin-top: 0;
-    margin-right: 0;
-  }
 }
 
 .chat-greeting__container {
@@ -228,4 +207,64 @@
 
 .hidden {
   display: none;
+}
+
+.header-nav__menu {
+  height: auto;
+  width: auto;
+  background: transparent;
+  border: transparent;
+  color: var(--nav-button-default-color);
+}
+
+.header-nav__menu i {
+  display: none;
+  font-size: 42px;
+}
+
+.header-nav__menu:hover {
+ color: var(--nav-button-hover-color);
+}
+
+@media screen and (max-width: 782px) {
+
+  .header-container {
+    position: absolute;
+    justify-content: space-evenly;
+  }
+
+  .header-nav__menu i {
+    display: inline;
+  }
+
+  .header-nav {
+    position: absolute;
+    margin: 178px 0 0 0;
+    background-color: white;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-color);
+    max-width: none;
+  }
+
+  .header-nav.initial, .hidden-nav {
+    display: none;
+  }
+
+  .chat-window {
+    position: absolute;
+    margin: 121px 0 0 0;
+    max-width: none;
+  }
+}
+
+@media screen and (max-width: 547px) {
+  .header-nav {
+    margin: 235px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 273px) {
+  .header-nav {
+    margin: 350px 0 0 0;
+  }
 }
