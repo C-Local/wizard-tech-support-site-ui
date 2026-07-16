@@ -4,7 +4,6 @@ import "./Header.css";
 import { HiddenPageContext } from "../App/App.jsx";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-
 function Header() {
   const [isChatOpen, toggleChatWindow] = useState(false);
 
@@ -61,15 +60,43 @@ function Header() {
             setHiddenPageStatus(true);
           }}
         ></NavLink>
-        <button className="header-nav__menu" onClick={() => {toggleMenu(isMenuOpen === "open" ? "closed" : "open"); toggleChatWindow(false); }}><i className="fa fa-bars"></i></button>
-        <nav className={isMenuOpen === "initial" ? "header-nav initial" : isMenuOpen === "open" ? "header-nav" : "hidden-nav"}>
-          <NavLink className="header-nav__link" to="/" onClick={() => toggleMenu("closed")}>
+        <button
+          className="header-nav__menu"
+          onClick={() => {
+            toggleMenu(isMenuOpen === "open" ? "closed" : "open");
+            toggleChatWindow(false);
+          }}
+        >
+          <i className="fa fa-bars"></i>
+        </button>
+        <nav
+          className={
+            isMenuOpen === "initial"
+              ? "header-nav initial"
+              : isMenuOpen === "open"
+                ? "header-nav"
+                : "header-nav hidden-nav"
+          }
+        >
+          <NavLink
+            className="header-nav__link"
+            to="/"
+            onClick={() => toggleMenu("closed")}
+          >
             Home
           </NavLink>
-          <NavLink className="header-nav__link" to="/contact" onClick={() => toggleMenu("closed")}>
+          <NavLink
+            className="header-nav__link"
+            to="/contact"
+            onClick={() => toggleMenu("closed")}
+          >
             Contact
           </NavLink>
-          <NavLink className="header-nav__link" to="/about-us" onClick={() => toggleMenu("closed")}>
+          <NavLink
+            className="header-nav__link"
+            to="/about-us"
+            onClick={() => toggleMenu("closed")}
+          >
             About Us
           </NavLink>
           <NavLink
@@ -83,11 +110,14 @@ function Header() {
           </NavLink>
         </nav>
         <a
-            className="fake-chatbot-button"
-            onClick={() => { toggleChatWindow(!isChatOpen); toggleMenu("closed"); }}
-          >
-            &#129302;
-          </a>
+          className="fake-chatbot-button"
+          onClick={() => {
+            toggleChatWindow(!isChatOpen);
+            toggleMenu("closed");
+          }}
+        >
+          &#129302;
+        </a>
       </div>
 
       {isChatOpen && (
