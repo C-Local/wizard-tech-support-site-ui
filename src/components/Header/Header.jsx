@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 import { HiddenPageContext } from "../App/App.jsx";
+import { AuthPageContext } from "../App/App.jsx";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function Header() {
@@ -14,6 +15,8 @@ function Header() {
   const [isChatEnabled, toggleChatAbility] = useState(true);
 
   const [isMenuOpen, toggleMenu] = useState("initial");
+
+  const [isAuth, toggleAuth] = useState(false);
 
   const botMessages = [
     "Sorry, I don't understand - can you repeat that request?",
@@ -28,6 +31,8 @@ function Header() {
 
   const { hiddenPageStatus, setHiddenPageStatus } =
     useContext(HiddenPageContext);
+
+  const { authPageStatus, setAuthPageStatus } = useContext(AuthPageContext);
 
   function submit() {
     if (userInput !== "" && userInput !== null) {
@@ -109,6 +114,25 @@ function Header() {
             Apply
           </NavLink>
         </nav>
+        <button
+          className={
+            isAuth ? "header-nav__sign-in hidden" : "header-nav__sign-in"
+          }
+          onClick={() => {
+            toggleAuth(!isAuth);
+            setAuthPageStatus(true);
+          }}
+        >
+          Sign In
+        </button>
+        <button
+          className={
+            isAuth ? "header-nav__sign-out" : "header-nav__sign-out hidden"
+          }
+          onClick={() => toggleAuth(!isAuth)}
+        >
+          Sign Out
+        </button>
         <a
           className="fake-chatbot-button"
           onClick={() => {

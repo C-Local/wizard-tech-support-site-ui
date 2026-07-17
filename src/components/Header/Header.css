@@ -227,7 +227,7 @@
   color: var(--nav-button-hover-color);
 }
 
-@media screen and (max-width: 782px) {
+@media screen and (max-width: 860px) {
   .header-container {
     position: absolute;
     justify-content: space-evenly;
@@ -235,11 +235,12 @@
 
   .header-nav__menu i {
     display: inline;
+    cursor: pointer;
   }
 
   .header-nav {
     position: absolute;
-    margin: 178px 0 0 0;
+    margin: 217px 0 0 0;
     background-color: white;
     padding: 14px 0;
     border-bottom: 1px solid var(--border-color);
@@ -258,14 +259,46 @@
   }
 }
 
-@media screen and (max-width: 547px) {
+@media screen and (max-width: 545px) {
   .header-nav {
     margin: 314px 0 0 0;
   }
 }
 
-@media screen and (max-width: 273px) {
+@media screen and (max-width: 271.5px) {
   .header-nav {
     margin: 412px 0 0 0;
   }
+}
+
+@media screen and (max-width: 258px) {
+  .header-nav {
+    margin: 509px 0 0 0;
+  }
+}
+
+.header-nav__sign-in,
+.header-nav__sign-out {
+  background-color: rgb(74, 122, 255);
+  border: 1px solid rgb(25, 39, 78);
+  border-radius: 30px;
+  width: 92px;
+  height: 42px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  transition: 0.15s ease;
+  margin: 0 20px;
+  flex-shrink: 0;
+}
+
+.header-nav__sign-in:hover,
+.header-nav__sign-out:hover {
+  background-color: rgb(138, 170, 255);
+  cursor: pointer;
+}
+
+.header-nav__sign-in:active,
+.header-nav__sign-out:active {
+  background-color: rgb(196, 211, 255);
 }

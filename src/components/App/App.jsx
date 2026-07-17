@@ -6,30 +6,39 @@ import Error from "../../pages/Error/Error.jsx";
 import About from "../../pages/About/About.jsx";
 import Footer from "../Footer/Footer.jsx";
 import Apply from "../../pages/Apply/Apply.jsx";
-import { app, dataB, auth } from "../../lib/firebase.js";
+import Auth from "../../components/Auth/Auth.jsx";
 import { createContext, useState } from "react";
 
 export const HiddenPageContext = createContext();
 
+export const AuthPageContext = createContext();
+
 function App() {
   const [hiddenPageStatus, setHiddenPageStatus] = useState(true);
 
-  const contextValue = { hiddenPageStatus, setHiddenPageStatus };
+  const hiddenPageCV = { hiddenPageStatus, setHiddenPageStatus };
+
+  const [authPageStatus, setAuthPageStatus] = useState(false);
+
+  const authPageCV = { authPageStatus, setAuthPageStatus };
 
   return (
-    <HiddenPageContext.Provider value={contextValue}>
-      <BrowserRouter>
-        <Header></Header>
+    <HiddenPageContext.Provider value={hiddenPageCV}>
+      <AuthPageContext.Provider value={authPageCV}>
+        <BrowserRouter>
+          <Header></Header>
 
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/contact" element={<Contact />}></Route>
-          <Route path="/about-us" element={<About />}></Route>
-          <Route path="/apply" element={<Apply />}></Route>
-          <Route path="*" element={<Error />}></Route>
-        </Routes>
-      </BrowserRouter>
-      <Footer></Footer>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/contact" element={<Contact />}></Route>
+            <Route path="/about-us" element={<About />}></Route>
+            <Route path="/apply" element={<Apply />}></Route>
+            <Route path="*" element={<Error />}></Route>
+          </Routes>
+        </BrowserRouter>
+        <Auth></Auth>
+        <Footer></Footer>
+      </AuthPageContext.Provider>
     </HiddenPageContext.Provider>
   );
 }
