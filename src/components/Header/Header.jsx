@@ -115,21 +115,27 @@ function Header() {
             Apply
           </NavLink>
         </nav>
-
-        {isAuth === `success` ? (
-          <button className="header-nav__sign-out" onClick={signUserOut}>
-            Sign Out
-          </button>
-        ) : (
-          <button
-            className="header-nav__sign-in"
-            onClick={() => {
-              setAuthPageStatus(true);
-            }}
-          >
-            Sign In
-          </button>
-        )}
+        <div className="header-nav__auth">
+          {isAuth === `success` ? (
+            <span className="header-nav__account-icon">Admin</span>
+          ) : (
+            ``
+          )}
+          {isAuth === `success` ? (
+            <button className="header-nav__sign-out" onClick={signUserOut}>
+              Sign Out
+            </button>
+          ) : (
+            <button
+              className="header-nav__sign-in"
+              onClick={() => {
+                setAuthPageStatus(true);
+              }}
+            >
+              Sign In
+            </button>
+          )}
+        </div>
         <a
           className="fake-chatbot-button"
           onClick={() => {

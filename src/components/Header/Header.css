@@ -43,7 +43,7 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 20px;
 }
 
 .header-nav__link {
@@ -288,7 +288,6 @@
   font-size: 16px;
   color: rgb(255, 255, 255);
   transition: 0.15s ease;
-  margin: 0 20px;
   flex-shrink: 0;
 }
 
@@ -301,4 +300,17 @@
 .header-nav__sign-in:active,
 .header-nav__sign-out:active {
   background-color: rgb(196, 211, 255);
+}
+
+.header-nav__auth {
+  margin: 0 20px;
+}
+
+.header-nav__account-icon {
+  margin-right: 10px;
+  background-color: rgb(74, 176, 255);
+  color: white;
+  font-family: Arial, sans-serif;
+  padding: 8px 12px;
+  border-radius: 2px;
 }

@@ -26,6 +26,10 @@ function Auth() {
       try {
         setSignInStatus("signing-in");
         await signInWithEmailAndPassword(auth, emailAddress, password);
+
+        setPassword("");
+        setEmailAddress("");
+
         setSignInStatus("signed-in");
         setTimeout(() => setAuthPageStatus(false), 500);
       } catch (error) {
@@ -84,6 +88,11 @@ function Auth() {
                   placeholder="Enter your email address..."
                   value={emailAddress}
                   onChange={(event) => setEmailAddress(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key == "Enter") {
+                      signIn();
+                    }
+                  }}
                 />
               </div>
               <div className="auth-prompt__form--field">
@@ -100,6 +109,11 @@ function Auth() {
                   placeholder="Enter your password..."
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key == "Enter") {
+                      signIn();
+                    }
+                  }}
                 />
               </div>
             </div>
