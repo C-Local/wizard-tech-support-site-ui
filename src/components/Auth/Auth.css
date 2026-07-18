@@ -31,23 +31,23 @@
   font-size: 18px;
   font-family: Arial, sans-serif;
   text-transform: uppercase;
-  margin: 40px 10px 20px 10px;
+  margin: 0 10px 20px 10px;
   font-weight: bold;
 }
 
-.auth-prompt__subtitle {
+.auth-prompt__directions {
   font-size: 14px;
   margin: 20px 10px 35px 10px;
+  max-width: 380px;
 }
 
 .auth-prompt__form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   gap: 15px;
   flex-wrap: nowrap;
-  margin-bottom: 60px;
 }
 
 .auth-prompt__form--field {
@@ -74,7 +74,7 @@
 }
 
 .auth-submit {
-  margin: 15px 10px;
+  margin: 25px 10px 10px 10px;
   border-radius: 16px;
   border: 1px solid black;
   color: white;
@@ -91,4 +91,31 @@
 
 .auth-submit:active {
   background-color: rgb(153, 175, 255);
+}
+
+.error {
+  color: red;
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  color: rgb(121, 121, 121);
+  margin: 15px 80px 0 100%;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.close-button:hover {
+  color: rgb(145, 144, 144);
+  cursor: pointer;
+}
+
+.close-button:active {
+  color: rgb(182, 181, 181);
+}
+
+.empty-auth-field-error {
+  box-shadow: 0 0 5px red;
 }
