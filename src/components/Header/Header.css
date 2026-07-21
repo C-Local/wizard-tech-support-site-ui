@@ -227,7 +227,7 @@
   color: var(--nav-button-hover-color);
 }
 
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 972px) {
   .header-container {
     position: absolute;
     justify-content: space-evenly;

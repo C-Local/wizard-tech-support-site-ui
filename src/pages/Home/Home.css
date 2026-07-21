@@ -41,12 +41,14 @@
 @keyframes flipAround {
   0% {
     width: 300px;
+    margin-right: 0;
+    margin-left: 166px;
     box-shadow: 0 0 30px rgb(181, 132, 255);
     rotate: 0;
   }
 
   40% {
-    rotate: -1deg;
+    rotate: -0.5deg;
   }
 
   49% {
@@ -55,6 +57,9 @@
 
   50% {
     width: 3px;
+    margin-right: 148.5px;
+    margin-left: 314.5px;
+    box-shadow: 0 0 40px rgb(220, 125, 251);
   }
 
   51% {
@@ -62,11 +67,13 @@
   }
 
   60% {
-    rotate: 1deg;
+    rotate: 0.5deg;
   }
 
   100% {
     width: 300px;
+    margin-right: 0;
+    margin-left: 166px;
     box-shadow: 0 0 30px rgb(181, 132, 255);
     rotate: 0;
   }
@@ -79,4 +86,26 @@
   font-size: 20px;
   text-align: center;
   max-width: 540px;
+}
+
+.hero-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 90px;
+}
+
+.demo-credentials {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 20px;
+}
+
+.demo-email-address, .demo-password {
+  font-size: 14px;
+  margin: 0;
+  animation: fadeIn 0.5s ease;
 }

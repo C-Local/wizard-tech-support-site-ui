@@ -10,7 +10,7 @@ function Home() {
 
   return (
     <div className="home-body-container">
-      <img
+      <div className="hero-section"><img
         id="hero-card"
         className={spinning ? "home-hero-image flip" : "home-hero-image"}
         src={hover || spinning ? glowHero : defHero}
@@ -18,6 +18,19 @@ function Home() {
         onMouseLeave={() => toggleHover(false)}
         onClick={() => setSpinning(!spinning)}
       ></img>
+      {
+      
+      spinning &&
+      import.meta.env.VITE_FIREBASE_DEMO_PASSWORD &&
+      import.meta.env.VITE_FIREBASE_DEMO_EMAIL_ADDRESS &&
+      
+      <div className="demo-credentials">
+        <p className="demo-email-address">Spellbound Stronghold: "{import.meta.env.VITE_FIREBASE_DEMO_EMAIL_ADDRESS}"</p>
+        <p className="demo-password">Key of Power: "{import.meta.env.VITE_FIREBASE_DEMO_PASSWORD}"</p>
+      </div>
+      
+      }
+      </div>
       <p className="site-description">
         For thousands of years, the guardians of magic have kept the world safe
         from warlocks, witches, and the outcast gods. Following their noble
