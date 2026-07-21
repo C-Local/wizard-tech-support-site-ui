@@ -1,0 +1,12 @@
+.apply-body-container {
+  padding-top: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.application-count-display {
+  text-align: center;
+  margin-top: 20px;
+}

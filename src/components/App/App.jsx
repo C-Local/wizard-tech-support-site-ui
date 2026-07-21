@@ -10,6 +10,8 @@ import Auth from "../../components/Auth/Auth.jsx";
 import { createContext, useState, useEffect } from "react";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../lib/firebase.js";
+import { getDocs, collection } from "firebase/firestore";
+import { dataB } from "../../lib/firebase.js";
 
 export const HiddenPageContext = createContext();
 
@@ -36,10 +38,16 @@ function App() {
     }
   }
 
+  const [requestCount, setRequestCount] = useState(null);
+
+  const [applicationCount, setApplicationCount] = useState(null);
+
   const authCV = {
     isAuth,
     setAuth,
     signUserOut,
+    requestCount,
+    applicationCount,
   };
 
   useEffect(() => {
@@ -47,8 +55,51 @@ function App() {
       user === null ? setAuth(`none`) : setAuth(`success`);
     });
 
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+    };
   }, []);
+
+  useEffect(() => {
+    if (isAuth !== `success`) {
+      setRequestCount(null);
+      setApplicationCount(null);
+      return;
+    }
+
+    async function getRequestsSize() {
+      try {
+        const snapshot = await getDocs(
+          collection(
+            dataB,
+            import.meta.env.VITE_FIREBASE_CONTACT_FORM_COLLECTION,
+          ),
+        );
+        setRequestCount(snapshot.size);
+      } catch (error) {
+        console.error("Error: ", error);
+        setRequestCount(null);
+      }
+    }
+
+    async function getApplicationsSize() {
+      try {
+        const snapshot = await getDocs(
+          collection(
+            dataB,
+            import.meta.env.VITE_FIREBASE_APPLY_FORM_COLLECTION,
+          ),
+        );
+        setApplicationCount(snapshot.size);
+      } catch (error) {
+        console.error("Error: ", error);
+        setApplicationCount(null);
+      }
+    }
+
+    getRequestsSize();
+    getApplicationsSize();
+  }, [isAuth]);
 
   return (
     <HiddenPageContext.Provider value={hiddenPageCV}>

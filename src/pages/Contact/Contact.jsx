@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./Contact.css";
 import Form from "../../components/Form/Form.jsx";
 import "../../components/Form/Form.css";
+import { AuthContext } from "../../components/App/App.jsx";
 
 function Contact() {
   const [firstName, setFirstName] = useState(``);
@@ -14,8 +15,13 @@ function Contact() {
 
   const [request, setRequest] = useState(``);
 
+  const { requestCount } = useContext(AuthContext);
+
   return (
-    <>
+    <div className="contact-body-container">
+      {requestCount !== null && (
+        <p className="request-count-display">Total Requests: {requestCount}</p>
+      )}
       <Form
         firstField={{
           type: "text",
@@ -70,7 +76,7 @@ function Contact() {
           greeting: `Hello, ${firstName}! Free pro tip: don't forget to finish the form.`,
         }}
       ></Form>
-    </>
+    </div>
   );
 }
 
